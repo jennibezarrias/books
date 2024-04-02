@@ -30,8 +30,7 @@
       "fieldtype": "Data",
       "readOnly": true,
       "section": "Zatca Details",
-      "tab": "Settings",
-      "default": "null"
+      "tab": "Settings"
     },
     {
       "label": "Zatca QR",
@@ -39,8 +38,7 @@
       "fieldtype": "Long Text",
       "readOnly": true,
       "section": "Zatca Details",
-      "tab": "Settings",
-      "default": "null"
+      "tab": "Settings"
     },
     {
       "fieldname": "backReference",

@@ -38,6 +38,13 @@
       "section": "Contacts"
     },
     {
+      "fieldname": "printer",
+      "label": "Default Printer",
+      "fieldtype": "Data",
+      "section": "Printer Settings",
+      "placeholder": "Your Printer Model"
+    },
+    {
       "fieldname": "color",
       "label": "Color",
       "placeholder": "Select Color",

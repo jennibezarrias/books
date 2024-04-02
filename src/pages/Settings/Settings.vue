@@ -6,6 +6,9 @@
       </Button>
     </template>
     <template #body>
+      <Button style="max-width: 100px" type="primary" @click="doPrint">
+        Print
+      </Button>
       <FormHeader
         :form-title="tabLabels[activeTab] ?? ''"
         :form-sub-title="t`Settings`"
@@ -85,6 +88,7 @@ import { docsPathRef } from 'src/utils/refs';
 import { UIGroupedFields } from 'src/utils/types';
 import { computed, defineComponent, inject } from 'vue';
 import CommonFormSection from '../CommonForm/CommonFormSection.vue';
+import initializeQz from 'src/utils/initializeQz';
 
 const COMPONENT_NAME = 'Settings';
 
@@ -211,6 +215,9 @@ export default defineComponent({
     await this.reset();
   },
   methods: {
+    async doPrint() {
+      await initializeQz();
+    },
     async reset() {
       const resetableDocs = this.schemas
         .map(({ name }) => this.fyo.singles[name])
