@@ -25,6 +25,24 @@
       "section": "Default"
     },
     {
+      "label": "Zatca TLV",
+      "fieldname": "zatca_tlv",
+      "fieldtype": "Data",
+      "readOnly": true,
+      "section": "Zatca Details",
+      "tab": "Settings",
+      "default": "null"
+    },
+    {
+      "label": "Zatca QR",
+      "fieldname": "zatca_qr",
+      "fieldtype": "Long Text",
+      "readOnly": true,
+      "section": "Zatca Details",
+      "tab": "Settings",
+      "default": "null"
+    },
+    {
       "fieldname": "backReference",
       "label": "Back Reference",
       "fieldtype": "Link",

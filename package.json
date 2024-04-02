@@ -20,12 +20,16 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@axenda/zatca": "^1.0.4",
     "@codemirror/autocomplete": "^6.4.2",
     "@codemirror/lang-vue": "^0.1.1",
+    "@electron/remote": "^2.1.2",
     "@popperjs/core": "^2.10.2",
     "better-sqlite3": "^9.2.2",
+    "buffer": "^6.0.3",
     "codemirror": "^6.0.1",
     "core-js": "^3.19.0",
+    "electron-pos-printer": "^1.3.7",
     "electron-store": "^8.0.1",
     "feather-icons": "^4.28.0",
     "knex": "^2.4.0",
@@ -33,6 +37,7 @@
     "luxon": "^2.5.2",
     "node-fetch": "2",
     "pesa": "^1.1.12",
+    "qz-tray": "^2.2.3",
     "source-map-support": "^0.5.21",
     "vue": "^3.2.40",
     "vue-router": "^4.0.12"

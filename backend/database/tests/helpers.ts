@@ -115,6 +115,22 @@ const SalesInvoice = {
       fieldtype: 'Currency',
       readOnly: true,
     },
+    {
+      label: "Zatca TLV",
+      fieldname: "zatca_tlv",
+      fieldtype: "Data",
+      readOnly: true,
+      section: "Zatca Details",
+      default: "null"
+    },
+    {
+      label: "Zatca QR",
+      fieldname: "zatca_qr",
+      fieldtype: "Long Text",
+      readOnly: true,
+      section: "Zatca Details",
+      default: "null"
+    },
   ],
 };
 

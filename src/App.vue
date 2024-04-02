@@ -61,6 +61,8 @@ import { Search } from './utils/search';
 import { Shortcuts } from './utils/shortcuts';
 import { routeTo } from './utils/ui';
 import { useKeys } from './utils/vueUtils';
+import { Buffer } from 'buffer';
+import initializeQz from 'utils/initializeQz';
 
 enum Screen {
   Desk = 'Desk',
@@ -124,6 +126,7 @@ export default defineComponent({
   },
   async mounted() {
     await this.setInitialScreen();
+    window.Buffer = Buffer;
   },
   methods: {
     async setInitialScreen(): Promise<void> {

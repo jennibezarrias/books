@@ -4,6 +4,7 @@ import { LedgerPosting } from 'models/Transactional/LedgerPosting';
 import { ModelNameEnum } from 'models/types';
 import { getInvoiceActions, getTransactionStatusColumn } from '../../helpers';
 import { Invoice } from '../Invoice/Invoice';
+import { Invoice as zatcaInvoice } from '@axenda/zatca';
 import { SalesInvoiceItem } from '../SalesInvoiceItem/SalesInvoiceItem';
 
 export class SalesInvoice extends Invoice {
@@ -46,7 +47,26 @@ export class SalesInvoice extends Invoice {
         await posting.debit(discountAccount, discountAmount.mul(exchangeRate));
       }
     }
-
+    if(this.submitted && (!this.zatca_tlv || !this.zatca_qr)) {
+      const acc = await this.fyo.doc.getDoc(ModelNameEnum.AccountingSettings);
+      let vatTotal = 0;
+      const taxes = await this.getTaxSummary();
+      taxes.forEach(i => {
+        if (i.account == acc.vat_account) {
+          vatTotal += i.amount.float;
+        }
+      })
+      const invoiceZatca = new zatcaInvoice({
+        sellerName: `${acc.companyName}`,
+        invoiceTimestamp: `${this.date}`,
+        invoiceTotal: `${this.grandTotal?.float}`,
+        invoiceVatTotal: `${vatTotal}`,
+        vatRegistrationNumber: `${acc.vat_number}`
+      })
+      this.zatca_tlv = invoiceZatca.toBase64();
+      this.zatca_qr = await invoiceZatca.render();
+    }
+    
     await posting.makeRoundOffEntry();
     return posting;
   }

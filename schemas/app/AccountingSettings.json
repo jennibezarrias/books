@@ -94,6 +94,20 @@
       "section": "Features"
     },
     {
+      "label": "VAT Registration Number",
+      "fieldname": "vat_number",
+      "fieldtype": "Data",
+      "section": "VAT Details"
+    },
+    {
+      
+      "label": "VAT Account",
+      "fieldname": "vat_account",
+      "fieldtype": "Link",
+      "section": "VAT Details",
+      "target": "Account"
+    },
+    {
       "fieldname": "enableFormCustomization",
       "label": "Enable Form Customization",
       "fieldtype": "Check",

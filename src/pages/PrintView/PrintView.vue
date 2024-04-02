@@ -16,6 +16,9 @@
         @change="onTemplateNameChange"
       />
       <DropdownWithActions :actions="actions" :title="t`More`" />
+      <Button class="text-xs" type="primary" @click="sendPrint">
+        Send to print
+      </Button>
       <Button class="text-xs" type="primary" @click="savePDF">
         {{ t`Save as PDF` }}
       </Button>
@@ -59,6 +62,7 @@ import { PrintValues } from 'src/utils/types';
 import { getFormRoute, openSettings, routeTo } from 'src/utils/ui';
 import { defineComponent } from 'vue';
 import PrintContainer from '../TemplateBuilder/PrintContainer.vue';
+import { ipcMain } from 'electron';
 
 export default defineComponent({
   name: 'PrintView',
@@ -253,6 +257,9 @@ export default defineComponent({
       }
 
       await printContainer.savePDF(this.doc?.name);
+    },
+    async sendPrint() {
+      alert('Sent to print - test')
     },
     async setTemplateFromDefault() {
       const defaultName =
