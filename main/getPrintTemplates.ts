@@ -13,7 +13,7 @@ export async function getTemplates() {
     const filePath = path.join(paths.root, file);
     const template = await fs.readFile(filePath, 'utf-8');
     const { mtime } = await fs.stat(filePath);
-    templates.push({ template, file, modified: mtime.toISOString() });
+    templates.push({ template, file, modified: mtime.toISOString()});
   }
 
   return templates;

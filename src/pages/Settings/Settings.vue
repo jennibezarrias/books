@@ -88,7 +88,6 @@ import { docsPathRef } from 'src/utils/refs';
 import { UIGroupedFields } from 'src/utils/types';
 import { computed, defineComponent, inject } from 'vue';
 import CommonFormSection from '../CommonForm/CommonFormSection.vue';
-import initializeQz from 'src/utils/initializeQz';
 
 const COMPONENT_NAME = 'Settings';
 
@@ -216,7 +215,7 @@ export default defineComponent({
   },
   methods: {
     async doPrint() {
-      await initializeQz();
+      return
     },
     async reset() {
       const resetableDocs = this.schemas

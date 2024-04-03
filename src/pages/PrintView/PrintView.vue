@@ -62,7 +62,7 @@ import { PrintValues } from 'src/utils/types';
 import { getFormRoute, openSettings, routeTo } from 'src/utils/ui';
 import { defineComponent } from 'vue';
 import PrintContainer from '../TemplateBuilder/PrintContainer.vue';
-import { ipcMain } from 'electron';
+import printMarkdown from 'src/utils/doPrintWithMarkdown';
 
 export default defineComponent({
   name: 'PrintView',
@@ -259,7 +259,7 @@ export default defineComponent({
       await printContainer.savePDF(this.doc?.name);
     },
     async sendPrint() {
-      alert('Sent to print - test')
+      printMarkdown(document.getElementById('preview-markdown')?.innerText);
     },
     async setTemplateFromDefault() {
       const defaultName =

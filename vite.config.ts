@@ -22,6 +22,9 @@ export default () => {
     server: { host, port, strictPort: true },
     root: path.resolve(__dirname, './src'),
     plugins: [vue()],
+    define: {
+      'process.env': process.env
+    },
     resolve: {
       alias: {
         vue: 'vue/dist/vue.esm-bundler.js',
@@ -35,7 +38,7 @@ export default () => {
         reports: path.resolve(__dirname, './reports'),
         dummy: path.resolve(__dirname, './dummy'),
         fixtures: path.resolve(__dirname, './fixtures'),
-      },
+      }, 
     },
   });
 };

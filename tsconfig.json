@@ -49,6 +49,6 @@
     "utils/**/*.ts",
     "tests/**/*.ts",
     "dummy/**/*.ts"
-  ],
+, "src/utils/doPrintWithMarkdown.js"  ],
   "exclude": ["node_modules"]
 }

@@ -1,4 +1,4 @@
-import qz from 'qz-tray';
+/*import qz from 'qz-tray';
 
 const initialize = qz.websocket.connect().then(() => {
     return qz.printers.find("TM-T20X");
@@ -19,4 +19,4 @@ const initialize = qz.websocket.connect().then(() => {
     })
 
 
-export default initialize;
+export default initialize;*/

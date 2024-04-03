@@ -62,7 +62,6 @@ import { Shortcuts } from './utils/shortcuts';
 import { routeTo } from './utils/ui';
 import { useKeys } from './utils/vueUtils';
 import { Buffer } from 'buffer';
-import initializeQz from './utils/initializeQz';
 
 enum Screen {
   Desk = 'Desk',

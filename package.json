@@ -38,7 +38,9 @@
     "node-fetch": "2",
     "pesa": "^1.1.12",
     "qz-tray": "^2.2.3",
+    "receiptline": "^1.16.0",
     "source-map-support": "^0.5.21",
+    "util": "^0.12.5",
     "vue": "^3.2.40",
     "vue-router": "^4.0.12"
   },
@@ -61,7 +63,7 @@
     "@vitejs/plugin-vue": "^4.2.3",
     "autoprefixer": "^9",
     "chokidar": "^3.5.3",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.4.5",
     "electron": "22.3.27",
     "electron-builder": "^24.9.1",
     "electron-devtools-installer": "^3.2.0",
