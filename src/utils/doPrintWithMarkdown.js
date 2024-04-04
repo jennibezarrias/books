@@ -1,18 +1,17 @@
-import receiptline from 'receiptline';
+import qz from 'qz-tray';
 
 export default function printMarkdown(markdown) {
-    
-    let command
     if (markdown) {
-       const command = receiptline.transform(markdown, {
-            cpl: 42,
-            encoding: 'multilingual',
-            spacing: false,
-            command: 'escpos',
-            upsideDown: false,
-            gamma: 1.8
-        })
-        console.log(command)
+        debugger;
+        const receipt = Receipt.from(markdown, '-p epson -c 42');
+        const command = receipt.toCommand().then(data => {
+            console.log(data)
+            qz.websocket.connect().then(function(){
+                return qz.printers.find('TM-T20X')
+            }).then(function(printer){
+                let config = qz.configs.create(printer)
+                qz.print(config, [data]);
+            })
+        });
     }
-    
 }
