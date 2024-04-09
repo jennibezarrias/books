@@ -5,12 +5,18 @@
     :dir="languageDirection"
     :language="language"
   >
+
+    
     <WindowsTitleBar
       v-if="platform === 'Windows'"
       :db-path="dbPath"
       :company-name="companyName"
     />
     <!-- Main Contents -->
+    <Login
+      v-if="activeScreen === 'Login'"
+      @on-login="doLogin"
+    />
     <Desk
       v-if="activeScreen === 'Desk'"
       class="flex-1"
@@ -47,6 +53,7 @@ import { fyo } from './initFyo';
 import DatabaseSelector from './pages/DatabaseSelector.vue';
 import Desk from './pages/Desk.vue';
 import SetupWizard from './pages/SetupWizard/SetupWizard.vue';
+import Login from './pages/Login.vue';
 import setupInstance from './setup/setupInstance';
 import { SetupWizardOptions } from './setup/types';
 import './styles/index.css';
@@ -64,6 +71,7 @@ import { useKeys } from './utils/vueUtils';
 import { Buffer } from 'buffer';
 
 enum Screen {
+  Login = 'Login',
   Desk = 'Desk',
   DatabaseSelector = 'DatabaseSelector',
   SetupWizard = 'SetupWizard',
@@ -72,6 +80,7 @@ enum Screen {
 export default defineComponent({
   name: 'App',
   components: {
+    Login,
     Desk,
     SetupWizard,
     DatabaseSelector,
@@ -129,6 +138,7 @@ export default defineComponent({
   },
   methods: {
     async setInitialScreen(): Promise<void> {
+
       const lastSelectedFilePath = fyo.config.get('lastSelectedFilePath', null);
 
       if (
@@ -136,9 +146,9 @@ export default defineComponent({
         !lastSelectedFilePath.length
       ) {
         this.activeScreen = Screen.DatabaseSelector;
+
         return;
       }
-
       await this.fileSelected(lastSelectedFilePath);
     },
     async setSearcher(): Promise<void> {
@@ -148,6 +158,7 @@ export default defineComponent({
     async setDesk(filePath: string): Promise<void> {
       await setLanguageMap();
       this.activeScreen = Screen.Desk;
+      //this.activeScreen = Screen.Login;
       await this.setDeskRoute();
       await fyo.telemetry.start(true);
       await ipc.checkForUpdates();
@@ -182,6 +193,22 @@ export default defineComponent({
         await handleErrorWithDialog(error, undefined, true, true);
         await this.showDbSelector();
       }
+    },
+    async doLogin(data:any) {
+      let headers = {
+        'Accept': 'text/plain',
+        'Content-Type': 'application/json'    
+      }
+
+      console.log(data.email, data.password)
+      const res = await fetch('/Auth/Login', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          userName: data.email,
+          password: data.password
+        })
+      });
     },
     async setupComplete(setupWizardOptions: SetupWizardOptions): Promise<void> {
       const companyName = setupWizardOptions.companyName;
