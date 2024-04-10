@@ -6,9 +6,6 @@
       </Button>
     </template>
     <template #body>
-      <Button style="max-width: 100px" type="primary" @click="doPrint">
-        Print
-      </Button>
       <FormHeader
         :form-title="tabLabels[activeTab] ?? ''"
         :form-sub-title="t`Settings`"
@@ -214,9 +211,6 @@ export default defineComponent({
     await this.reset();
   },
   methods: {
-    async doPrint() {
-      return
-    },
     async reset() {
       const resetableDocs = this.schemas
         .map(({ name }) => this.fyo.singles[name])

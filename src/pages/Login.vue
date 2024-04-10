@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import { showSidebar } from '../utils/refs';
 import { defineComponent } from 'vue';
 import FormControl from 'src/components/Controls/FormControl.vue';
 import Button from 'src/components/Button.vue';
@@ -74,9 +73,6 @@ export default defineComponent({
             this.$emit('on-login', {success});
         }
     },
-    mounted() {
-        showSidebar.value = false;
-    }
 })
 </script>
 
