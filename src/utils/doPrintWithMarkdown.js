@@ -32,8 +32,8 @@ export default function printMarkdown(markdown) {
                 format: 'image',
                 flavor: 'base64',
                 data: qrCode +     
-                      '\x1B' + '\x69' // cut paper
-                      + '\x1B' + '\x40'
+                      '\x1B' + '\x69' + // cut paper
+                      '\x1B' + '\x40'
                 ,
                 options: {language: 'ESCPOS', dotDensity: 'double'}
             }]);

@@ -157,8 +157,11 @@ export default defineComponent({
     },
     async setDesk(filePath: string): Promise<void> {
       await setLanguageMap();
-      this.activeScreen = Screen.Desk;
-      //this.activeScreen = Screen.Login;
+      if(localStorage.token) {
+        this.activeScreen = Screen.Desk;
+      } else {
+        this.activeScreen = Screen.Login;
+      }
       await this.setDeskRoute();
       await fyo.telemetry.start(true);
       await ipc.checkForUpdates();
@@ -195,20 +198,9 @@ export default defineComponent({
       }
     },
     async doLogin(data:any) {
-      let headers = {
-        'Accept': 'text/plain',
-        'Content-Type': 'application/json'    
+      if (data.success) {
+        this.setInitialScreen();
       }
-
-      console.log(data.email, data.password)
-      const res = await fetch('/Auth/Login', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          userName: data.email,
-          password: data.password
-        })
-      });
     },
     async setupComplete(setupWizardOptions: SetupWizardOptions): Promise<void> {
       const companyName = setupWizardOptions.companyName;
