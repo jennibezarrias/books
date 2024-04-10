@@ -19,6 +19,12 @@
         >
             Login
         </Button>
+        <Button
+            @click="createCompany()"
+            type="secondary"
+        >
+        Create Company
+        </Button>
         </form>
     </div>
 </template>
@@ -43,6 +49,9 @@ export default defineComponent({
        
     },
     methods: {
+        createCompany() {
+            this.$emit('on-signup')
+        },
         doLogin() {
             this.warn = '';
             let success = false;
@@ -71,7 +80,7 @@ export default defineComponent({
             }
 
             this.$emit('on-login', {success});
-        }
+        },
     },
 })
 </script>

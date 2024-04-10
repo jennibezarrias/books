@@ -16,6 +16,7 @@
     <Login
       v-if="activeScreen === 'Login'"
       @on-login="doLogin"
+      @on-signup="doSignup"
     />
     <Desk
       v-if="activeScreen === 'Desk'"
@@ -201,6 +202,9 @@ export default defineComponent({
       if (data.success) {
         this.setInitialScreen();
       }
+    },
+    doSignup() {
+      this.activeScreen = Screen.SetupWizard;
     },
     async setupComplete(setupWizardOptions: SetupWizardOptions): Promise<void> {
       const companyName = setupWizardOptions.companyName;
